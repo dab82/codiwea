@@ -8,7 +8,6 @@ import {
   Container,
   IconButton,
   Typography,
-  List,
   CircularProgress,
 } from '@mui/material';
 import CachedRoundedIcon from '@mui/icons-material/CachedRounded';
