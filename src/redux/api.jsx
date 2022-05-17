@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'http://api.openweathermap.org/data/2.5';
+axios.defaults.baseURL = 'https://api.openweathermap.org/data/2.5';
 const KEY = 'd4d607e5d23d189c71bea9a2692975a0';
 
 export async function getWeather(query) {
