@@ -37,7 +37,6 @@ const CityList = () => {
         pagination={{
           dynamicBullets: true,
         }}
-        autoHeight
         navigation={true}
         modules={[Navigation, Pagination]}
         style={{ display: 'flex' }}
