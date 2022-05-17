@@ -20,7 +20,7 @@ const CityCard = ({ cityData }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { name, main, weather, id, dt } = cityData;
+  const { name, main, weather, id, dt, sys } = cityData;
   const { temp, pressure, humidity } = main;
 
   const onDetailed = e => {
@@ -28,9 +28,9 @@ const CityCard = ({ cityData }) => {
     dispatch(getCityId(id));
     navigate(`/${name}${id}`);
   };
-  const currentTemp = Math.floor(temp - 273);
-  const positiveTemp = currentTemp > 0;
-  const timeNow = new Date(dt * 1000).toLocaleTimeString();
+
+  const currentTemp = Math.round(temp - 273);
+  const currentTime = new Date(dt * 1000).toLocaleTimeString();
 
   return (
     <>
@@ -41,21 +41,21 @@ const CityCard = ({ cityData }) => {
         <CardActionArea onClick={onDetailed} id={id}>
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              {name}
+              {name}, {sys.country}
             </Typography>
             <Typography variant="body1" color="textSecondary" component="p">
-              Temperature: {positiveTemp ? '+' : '-'}
-              {currentTemp}&#xb0;
+              Temperature: {currentTemp > 0 ? '+' : '-'}
+              {currentTemp}&#xb0;C
             </Typography>
 
             <Typography variant="body1" color="textSecondary" component="p">
-              Pressure: {`${Math.floor((pressure * 7.464) / 10)} мм.рт.ст`}
+              Pressure: {`${Math.round((pressure * 7.464) / 10)} mm.Hg`}
             </Typography>
             <Typography variant="body1" color="textSecondary" component="p">
               Humidity: {humidity} %
             </Typography>
             <Typography variant="body1" color="textSecondary" component="p">
-              Last update {timeNow}
+              Last update {currentTime}
             </Typography>
             <CardMedia
               component="img"
