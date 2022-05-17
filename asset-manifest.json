@@ -1,14 +1,13 @@
 {
   "files": {
-    "main.css": "/codiwea/static/css/main.31f1e2c0.css",
-    "main.js": "/codiwea/static/js/main.f8dd439c.js",
-    "static/media/background.webp": "/codiwea/static/media/background.3fdb97f2beaab85314c8.webp",
+    "main.css": "/codiwea/static/css/main.85b9ac7b.css",
+    "main.js": "/codiwea/static/js/main.018f6017.js",
     "index.html": "/codiwea/index.html",
-    "main.31f1e2c0.css.map": "/codiwea/static/css/main.31f1e2c0.css.map",
-    "main.f8dd439c.js.map": "/codiwea/static/js/main.f8dd439c.js.map"
+    "main.85b9ac7b.css.map": "/codiwea/static/css/main.85b9ac7b.css.map",
+    "main.018f6017.js.map": "/codiwea/static/js/main.018f6017.js.map"
   },
   "entrypoints": [
-    "static/css/main.31f1e2c0.css",
-    "static/js/main.f8dd439c.js"
+    "static/css/main.85b9ac7b.css",
+    "static/js/main.018f6017.js"
   ]
 }
