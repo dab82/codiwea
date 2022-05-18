@@ -8,7 +8,7 @@ export async function getWeather(query) {
     const data = await axios.get(`/weather?q=${query}&appid=${KEY}`);
     return data.data;
   } catch (error) {
-    throw Error(error);
+    throw alert('City not found.');
   }
 }
 

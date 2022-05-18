@@ -7,6 +7,7 @@ import '../../index.css';
 import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 import CachedRoundedIcon from '@mui/icons-material/CachedRounded';
 import {
+  Box,
   Typography,
   Card,
   CardActionArea,
@@ -14,12 +15,12 @@ import {
   CardContent,
   CardActions,
   IconButton,
+  Skeleton,
 } from '@mui/material';
 
 const CityCard = ({ cityData }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const { name, main, weather, id, dt, sys } = cityData;
   const { temp, pressure, humidity } = main;
 
@@ -35,7 +36,7 @@ const CityCard = ({ cityData }) => {
   return (
     <>
       <Card
-        sx={{ width: '320px', m: '0 10px' }}
+        sx={{ width: '300px', m: '0 10px' }}
         className={currentTemp > 15 ? 'app warm' : 'app'}
       >
         <CardActionArea onClick={onDetailed} id={id}>
@@ -47,7 +48,6 @@ const CityCard = ({ cityData }) => {
               Temperature: {currentTemp > 0 ? '+' : '-'}
               {currentTemp}&#xb0;C
             </Typography>
-
             <Typography variant="body1" color="textSecondary" component="p">
               Pressure: {`${Math.round((pressure * 7.464) / 10)} mm.Hg`}
             </Typography>
@@ -57,11 +57,24 @@ const CityCard = ({ cityData }) => {
             <Typography variant="body1" color="textSecondary" component="p">
               Last update {currentTime}
             </Typography>
-            <CardMedia
-              component="img"
-              alt="icon"
-              image={`http://openweathermap.org/img/wn/${weather[0]?.icon}@4x.png`}
-            />
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              {!weather.icon ? (
+                <CardMedia
+                  sx={{ width: 150, height: 150 }}
+                  component="img"
+                  alt="icon"
+                  image={`https://openweathermap.org/img/wn/${weather[0]?.icon}@2x.png`}
+                />
+              ) : (
+                <Skeleton variant="rectangular" width={150} height={150} />
+              )}
+            </Box>
           </CardContent>
         </CardActionArea>
         <CardActions

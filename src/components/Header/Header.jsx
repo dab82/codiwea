@@ -20,7 +20,7 @@ const Header = () => {
         spacing={{ xs: 2, sm: 1 }}
         sx={{
           py: { xs: 1, sm: 2 },
-          px: 1,
+          px: 2,
           alignItems: 'center',
         }}
       >

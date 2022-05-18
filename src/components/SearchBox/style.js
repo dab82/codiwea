@@ -8,7 +8,9 @@ export const Search = styled('div')(({ theme }) => ({
   '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.45),
   },
+
   marginLeft: 0,
+  height: '40px',
   width: '100%',
   [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(1),
@@ -34,11 +36,10 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
     width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
-      },
+    borderRadius: theme.shape.borderRadius,
+    '&:focus': {
+      backgroundColor: alpha(theme.palette.common.white, 0.45),
+      borderBottom: `1px solid ${alpha(theme.palette.common.white, 0.75)}`,
     },
   },
 }));

@@ -1,6 +1,4 @@
-// import React, { useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { updateCity } from 'redux/operations';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import Header from './Header/Header';
 import '../index.css';
@@ -9,13 +7,6 @@ import DetailedInfo from './DetailedInfo/DetailedInfo';
 import Footer from './Footer/Footer';
 
 const App = () => {
-  // const dispatch = useDispatch();
-  // const listCities = useSelector(state => state.cities.cities);
-
-  // useEffect(() => {
-  //   dispatch(updateCity());
-  // }, [dispatch]);
-
   return (
     <div className="home">
       <Header />

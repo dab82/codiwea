@@ -6,7 +6,6 @@ import {
   addCitySuccess,
   getCityId,
   deleteCity,
-  errorOff,
   getHourlyWeatherError,
   getHourlyWeatherRequest,
   getHourlyWeatherSuccess,
@@ -49,34 +48,7 @@ const loading = createReducer(false, {
   [getHourlyWeatherError]: () => false,
 });
 
-const error = createReducer(
-  { error: false },
-  {
-    [addCityError]: (_, action) => ({
-      error: true,
-      message: action.payload.message,
-    }),
-    [addCitySuccess]: () => ({
-      error: false,
-    }),
-
-    [updateCityError]: (_, action) => ({
-      error: true,
-      message: action.payload.message,
-    }),
-    [updateCitySuccess]: () => ({
-      error: false,
-    }),
-    [getHourlyWeatherError]: (_, action) => ({
-      error: true,
-      message: action.payload.message,
-    }),
-    [getHourlyWeatherSuccess]: () => ({
-      error: false,
-    }),
-    [errorOff]: (_, action) => action.payload,
-  }
-);
+const error = createReducer(null, {});
 
 export default combineReducers({
   cities,

@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getHourlyWeather, updateCity } from 'redux/operations';
+import { getHourlyWeather } from 'redux/operations';
 import {
+  CardMedia,
   Box,
   Grid,
   Container,
@@ -10,9 +11,10 @@ import {
   Typography,
   CircularProgress,
 } from '@mui/material';
-import CachedRoundedIcon from '@mui/icons-material/CachedRounded';
-import { ArrowBackIosSharp } from '@mui/icons-material';
 
+import { ArrowBackIosSharp } from '@mui/icons-material';
+import ModeNightTwoToneIcon from '@mui/icons-material/ModeNightTwoTone';
+import LightModeTwoToneIcon from '@mui/icons-material/LightModeTwoTone';
 const DetailedInfo = () => {
   const dispatch = useDispatch();
 
@@ -32,16 +34,11 @@ const DetailedInfo = () => {
     dispatch(getHourlyWeather(coord.lat, coord.lon, 'minutely,daily'));
   }, [coord, dispatch]);
 
-  const iconsWeather = weather.map(({ icon }) => icon);
   const currentTemp = (temp - 273).toFixed(1);
   const currentTime = new Date(dt * 1000).toLocaleTimeString();
   const sunR = new Date(sys.sunrise * 1000).toLocaleTimeString();
   const sunS = new Date(sys.sunset * 1000).toLocaleTimeString();
 
-  const updateData = () => {
-    dispatch(updateCity(name));
-  };
-  // форматирование даты
   const format_date = d => {
     let months = [
       'Jan',
@@ -67,55 +64,47 @@ const DetailedInfo = () => {
 
   return (
     <Container>
-      <Link to="/">
-        {' '}
-        <IconButton style={{ color: 'rgb(243, 227, 227)' }}>
-          <ArrowBackIosSharp />
-        </IconButton>
-      </Link>
-      <IconButton style={{ color: 'rgb(243, 227, 227)' }} onClick={updateData}>
-        <CachedRoundedIcon />
-      </IconButton>
-      <Box>
-        <Box>
-          {' '}
-          <div className="date">{format_date(new Date())}</div>
+      <Box display={'flex'} pt={2}>
+        <Link to="/">
+          <IconButton>
+            <ArrowBackIosSharp />
+          </IconButton>
+        </Link>
+
+        <Box sx={{ marginLeft: 1 }}>
+          <Typography variant="body1" color="secondary">
+            {format_date(new Date())}
+          </Typography>
           <Typography variant="h3" noWrap>
             {name}, {sys.country}{' '}
           </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Typography variant="h3" noWrap>
+            <Typography variant="h4" noWrap>
               {currentTemp > 0 ? '+' : '-'}
               {currentTemp} &deg;C
             </Typography>
-            <Typography variant="h6">
-              <div>
-                <img
-                  src={`http://openweathermap.org/img/wn/${iconsWeather[0]}@2x.png`}
-                  alt={iconsWeather[0]}
-                />
-              </div>
-            </Typography>
+            <CardMedia>
+              <img
+                src={`https://openweathermap.org/img/wn/${weather[0]?.icon}.png`}
+                alt="icon"
+              />
+            </CardMedia>
           </Box>
           <Typography variant="h6" noWrap>
             last update {currentTime}
           </Typography>
           <Typography variant="h6" noWrap>
-            sunrise: {sunR}
+            <LightModeTwoToneIcon /> sunrise: {sunR}
           </Typography>
           <Typography variant="h6" noWrap>
-            sunset: {sunS}
+            <ModeNightTwoToneIcon /> sunset: {sunS}
           </Typography>
-        </Box>
-        <Box>
-          <Typography variant="h4">
-            {`${Math.round((pressure * 7.464) / 10)} mm.Hg`}
+          <Typography variant="h6">
+            {`Pressure: ${Math.round((pressure * 7.464) / 10)} mm.Hg`}
           </Typography>
-          <Typography variant="h4" noWrap>
-            {humidity} %
+          <Typography variant="h6" noWrap>
+            Humidity: {humidity} %
           </Typography>
-        </Box>
-        <Box>
           <Typography variant="h6" noWrap>
             Clouds {clouds.all} %
           </Typography>
@@ -126,10 +115,12 @@ const DetailedInfo = () => {
       </Box>
 
       {loading ? (
-        <CircularProgress color="secondary" />
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <CircularProgress />
+        </Box>
       ) : (
-        <Box>
-          <Typography variant="h5">Hourly forecast:</Typography>
+        <Box my={3}>
+          <Typography variant="h4">Hourly forecast:</Typography>
           <Grid
             container
             spacing={1}
@@ -153,7 +144,7 @@ const DetailedInfo = () => {
                       py: 1,
                       textAlign: 'center',
                       marginTop: `${50 - Math.round(hour.temp - 273)}px`,
-                      backgroundColor: '#f1f38c',
+                      backgroundColor: '#f7d461',
                       borderRadius: '1px',
                       boxShadow: '1px 1px rgba(160, 105, 4, 0.3)',
                     }}

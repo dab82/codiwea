@@ -36,6 +36,7 @@ const SearchBox = props => {
             onChange={e => setValue(e.target.value)}
             value={value}
             onKeyPress={props.search}
+            fullWidth
           />
         </Box>
       </Search>

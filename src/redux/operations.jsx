@@ -18,13 +18,9 @@ export const addCity = (cityName, listCitiesWeather) => async dispatch => {
     const isCity = listCitiesWeather.find(({ id }) => id === data.id);
     !isCity
       ? dispatch(addCitySuccess(data))
-      : dispatch(
-          addCityError({
-            message: 'This city has already been declared',
-          })
-        );
+      : dispatch(addCityError(alert('This city has already been declared')));
   } catch (error) {
-    dispatch(addCityError(error));
+    dispatch(addCityError(error.message));
   }
 };
 
@@ -34,7 +30,7 @@ export const updateCity = cityName => async dispatch => {
     const data = await getWeather(cityName);
     dispatch(updateCitySuccess(data));
   } catch (error) {
-    dispatch(updateCityError(error));
+    dispatch(updateCityError(error.message));
   }
 };
 
@@ -45,6 +41,6 @@ export const getHourlyWeather = (lat, lon, exclude) => async dispatch => {
 
     dispatch(getHourlyWeatherSuccess(data));
   } catch (error) {
-    dispatch(getHourlyWeatherError(error));
+    dispatch(getHourlyWeatherError(error.message));
   }
 };

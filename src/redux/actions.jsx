@@ -1,11 +1,9 @@
 import { createAction } from '@reduxjs/toolkit';
 
-export const getCityId = createAction('city/cityId');
-
 export const addCityRequest = createAction('city/addRequest');
 export const addCitySuccess = createAction('city/addSuccess');
 export const addCityError = createAction('city/addError');
-
+export const getCityId = createAction('city/cityId');
 export const deleteCity = createAction('city/delete');
 
 export const updateCityRequest = createAction('city/updateRequest');
