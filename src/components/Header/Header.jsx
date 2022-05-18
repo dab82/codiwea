@@ -2,8 +2,8 @@ import React from 'react';
 import json2mq from 'json2mq';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { AppBar, Avatar, Grid, Typography } from '@mui/material';
-import logo from '../../logo.png';
 import SearchBox from 'components/SearchBox/SearchBox';
+import logo from '../../logo.png';
 
 const Header = () => {
   const today = new Date().toLocaleDateString();

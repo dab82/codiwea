@@ -9,7 +9,7 @@ import {
   updateCityRequest,
   updateCitySuccess,
 } from './actions';
-import { getWeather, getDetailsyWeather } from './api';
+import { getWeather, getDetailsWeather } from '../services/api';
 
 export const addCity = (cityName, listCitiesWeather) => async dispatch => {
   dispatch(addCityRequest());
@@ -18,7 +18,7 @@ export const addCity = (cityName, listCitiesWeather) => async dispatch => {
     const isCity = listCitiesWeather.find(({ id }) => id === data.id);
     !isCity
       ? dispatch(addCitySuccess(data))
-      : dispatch(addCityError(alert('This city has already been declared')));
+      : dispatch(addCityError(alert('This city has already been added')));
   } catch (error) {
     dispatch(addCityError(error.message));
   }
@@ -37,7 +37,7 @@ export const updateCity = cityName => async dispatch => {
 export const getHourlyWeather = (lat, lon, exclude) => async dispatch => {
   dispatch(getHourlyWeatherRequest());
   try {
-    const data = await getDetailsyWeather(lat, lon, exclude);
+    const data = await getDetailsWeather(lat, lon, exclude);
 
     dispatch(getHourlyWeatherSuccess(data));
   } catch (error) {

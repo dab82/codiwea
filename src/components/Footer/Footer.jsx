@@ -5,7 +5,7 @@ const Footer = () => (
   <footer>
     <Box
       sx={{
-        py: { xs: 2, sm: 3 },
+        py: 3,
         color: '#010163',
       }}
     >

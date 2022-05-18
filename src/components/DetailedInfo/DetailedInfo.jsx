@@ -11,21 +11,18 @@ import {
   Typography,
   CircularProgress,
 } from '@mui/material';
-
-import { ArrowBackIosSharp } from '@mui/icons-material';
+import ArrowBackIosSharp from '@mui/icons-material/ArrowBackIosSharp';
 import ModeNightTwoToneIcon from '@mui/icons-material/ModeNightTwoTone';
 import LightModeTwoToneIcon from '@mui/icons-material/LightModeTwoTone';
+
 const DetailedInfo = () => {
   const dispatch = useDispatch();
 
   const listCitiesWeather = useSelector(state => state.cities.cities);
   const idCity = useSelector(state => state.cities.cityId);
   const hourlyTempList = useSelector(state => state.cities.hourlyWeatherCity);
-
   const hourlyTemp12 = hourlyTempList.slice(1, 13);
-
   const loading = useSelector(state => state.cities.loading);
-
   const cityDetails = listCitiesWeather.find(({ id }) => id === +idCity);
   const { main, name, sys, weather, wind, dt, coord, clouds } = cityDetails;
   const { temp, pressure, humidity } = main;
@@ -34,10 +31,19 @@ const DetailedInfo = () => {
     dispatch(getHourlyWeather(coord.lat, coord.lon, 'minutely,daily'));
   }, [coord, dispatch]);
 
-  const currentTemp = (temp - 273).toFixed(1);
-  const currentTime = new Date(dt * 1000).toLocaleTimeString();
-  const sunR = new Date(sys.sunrise * 1000).toLocaleTimeString();
-  const sunS = new Date(sys.sunset * 1000).toLocaleTimeString();
+  const currentTemp = temp.toFixed(1);
+  const currentTime = new Date(dt * 1000).toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+  const sunRise = new Date(sys.sunrise * 1000).toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
+  const sunSet = new Date(sys.sunset * 1000).toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+  });
 
   const format_date = d => {
     let months = [
@@ -93,11 +99,15 @@ const DetailedInfo = () => {
           <Typography variant="h6" noWrap>
             last update {currentTime}
           </Typography>
+
           <Typography variant="h6" noWrap>
-            <LightModeTwoToneIcon /> sunrise: {sunR}
+            <LightModeTwoToneIcon /> sunrise: {sunRise}
           </Typography>
           <Typography variant="h6" noWrap>
-            <ModeNightTwoToneIcon /> sunset: {sunS}
+            <ModeNightTwoToneIcon /> sunset: {sunSet}
+          </Typography>
+          <Typography variant="h6" noWrap>
+            Conditions: {weather[0]?.description}
           </Typography>
           <Typography variant="h6">
             {`Pressure: ${Math.round((pressure * 7.464) / 10)} mm.Hg`}
@@ -143,14 +153,14 @@ const DetailedInfo = () => {
                     sx={{
                       py: 1,
                       textAlign: 'center',
-                      marginTop: `${50 - Math.round(hour.temp - 273)}px`,
+                      marginTop: `${50 - Math.round(hour.temp)}px`,
                       backgroundColor: '#f7d461',
                       borderRadius: '1px',
                       boxShadow: '1px 1px rgba(160, 105, 4, 0.3)',
                     }}
                   >
-                    {Math.round(hour.temp - 273) > 0 ? '+' : '-'}
-                    {Math.round(hour.temp - 273)}
+                    {Math.round(hour.temp) > 0 ? '+' : '-'}
+                    {Math.round(hour.temp)}
                   </Typography>
 
                   <Typography sx={{ fontSize: 'small', textAlign: 'center' }}>

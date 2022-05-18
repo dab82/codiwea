@@ -28,7 +28,7 @@ const CityList = () => {
             slidesPerView: 3,
             spaceBetween: 20,
           },
-          1370: {
+          1280: {
             slidesPerView: 4,
             spaceBetween: 20,
           },

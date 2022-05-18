@@ -30,8 +30,18 @@ const CityCard = ({ cityData }) => {
     navigate(`/${name}${id}`);
   };
 
-  const currentTemp = Math.round(temp - 273);
-  const currentTime = new Date(dt * 1000).toLocaleTimeString();
+  const updateWeather = () => {
+    setTimeout(() => {
+      dispatch(updateCity(name));
+    }, 1000);
+  };
+
+  const currentTemp = Math.round(temp);
+  const currentTime = new Date(dt * 1000).toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: true,
+  });
 
   return (
     <>
@@ -84,7 +94,7 @@ const CityCard = ({ cityData }) => {
             justifyContent: 'space-around',
           }}
         >
-          <IconButton onClick={() => dispatch(updateCity(name))}>
+          <IconButton onClick={updateWeather}>
             <CachedRoundedIcon />
           </IconButton>
           <IconButton onClick={() => dispatch(deleteCity(id))} id={id}>

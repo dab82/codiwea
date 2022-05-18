@@ -1,9 +1,9 @@
-import { Box } from '@mui/material';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addCity } from 'redux/operations';
-import { Search, SearchIconWrapper, StyledInputBase } from './style';
+import { Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import { Search, SearchIconWrapper, StyledInputBase } from './style';
 import '../../index.css';
 
 const SearchBox = props => {
@@ -14,8 +14,10 @@ const SearchBox = props => {
 
   const addOneCity = e => {
     e.preventDefault();
-    dispatch(addCity(value, listCitiesWeather));
-    setValue('');
+    setTimeout(() => {
+      dispatch(addCity(value, listCitiesWeather));
+      setValue('');
+    }, 1000);
   };
 
   return (
@@ -30,6 +32,7 @@ const SearchBox = props => {
           noValidate
           autoComplete="off"
           onSubmit={addOneCity}
+          required
         >
           <StyledInputBase
             placeholder="Search city..."
@@ -37,6 +40,7 @@ const SearchBox = props => {
             value={value}
             onKeyPress={props.search}
             fullWidth
+            required
           />
         </Box>
       </Search>
