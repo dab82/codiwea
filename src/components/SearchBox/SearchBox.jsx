@@ -1,14 +1,25 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addCity } from 'redux/operations';
+import { Formik } from 'formik';
+import * as yup from 'yup';
 import { Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { Search, SearchIconWrapper, StyledInputBase } from './style';
 import '../../index.css';
 
+const initialValues = {
+  city: '',
+};
+const validationSchema = yup.object().shape({
+  city: yup
+    .string()
+    .min(2, 'Too Short!')
+    .max(20, 'Too Long!')
+    .required('required field'),
+});
 const SearchBox = props => {
   const listCitiesWeather = useSelector(state => state.cities.cities);
-
   const [value, setValue] = useState('');
   const dispatch = useDispatch();
 
@@ -27,22 +38,22 @@ const SearchBox = props => {
           <SearchIcon />
         </SearchIconWrapper>
 
-        <Box
-          component="form"
-          noValidate
-          autoComplete="off"
-          onSubmit={addOneCity}
-          required
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
         >
-          <StyledInputBase
-            placeholder="Search city..."
-            onChange={e => setValue(e.target.value)}
-            value={value}
-            onKeyPress={props.search}
-            fullWidth
-            required
-          />
-        </Box>
+          <Box component="form" autoComplete="off" onSubmit={addOneCity}>
+            <StyledInputBase
+              placeholder="Search city..."
+              onChange={e => setValue(e.target.value)}
+              value={value}
+              name="city"
+              onKeyPress={props.search}
+              fullWidth
+              required
+            />
+          </Box>
+        </Formik>
       </Search>
     </>
   );
