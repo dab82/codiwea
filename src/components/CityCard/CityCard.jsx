@@ -37,7 +37,7 @@ const CityCard = ({ cityData }) => {
   };
 
   const currentTemp = Math.round(temp);
-  const currentTime = new Date(dt * 1000).toLocaleTimeString([], {
+  const currentTime = new Date(dt * 1000).toLocaleTimeString('en-US', {
     hour: '2-digit',
     minute: '2-digit',
     hour12: true,
