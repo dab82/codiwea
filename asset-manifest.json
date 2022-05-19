@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/codiwea/static/css/main.3fb1a984.css",
-    "main.js": "/codiwea/static/js/main.f72dc613.js",
+    "main.js": "/codiwea/static/js/main.bb49f569.js",
     "static/media/background.webp": "/codiwea/static/media/background.3fdb97f2beaab85314c8.webp",
     "index.html": "/codiwea/index.html",
     "main.3fb1a984.css.map": "/codiwea/static/css/main.3fb1a984.css.map",
-    "main.f72dc613.js.map": "/codiwea/static/js/main.f72dc613.js.map"
+    "main.bb49f569.js.map": "/codiwea/static/js/main.bb49f569.js.map"
   },
   "entrypoints": [
     "static/css/main.3fb1a984.css",
-    "static/js/main.f72dc613.js"
+    "static/js/main.bb49f569.js"
   ]
 }
