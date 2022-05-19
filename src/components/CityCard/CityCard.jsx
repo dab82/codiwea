@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { deleteCity, getCityId } from 'redux/actions';
@@ -29,6 +29,10 @@ const CityCard = ({ cityData }) => {
     dispatch(getCityId(id));
     navigate(`/${name}${id}`);
   };
+
+  useEffect(() => {
+    dispatch(updateCity(name));
+  }, [dispatch, name]);
 
   const updateWeather = () => {
     setTimeout(() => {
