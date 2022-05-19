@@ -153,7 +153,7 @@ const DetailedInfo = () => {
                     sx={{
                       py: 1,
                       textAlign: 'center',
-                      marginTop: `${50 - Math.round(hour.temp)}px`,
+                      marginTop: `${40 - Math.round(hour.temp)}px`,
                       backgroundColor: '#f7d461',
                       borderRadius: '1px',
                       boxShadow: '1px 1px rgba(160, 105, 4, 0.3)',
