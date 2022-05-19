@@ -43,3 +43,12 @@ export const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
+export const AddButton = styled('button')(({ theme }) => ({
+  position: 'absolute',
+  right: 10,
+  border: 'none',
+  background: 'inherit',
+  color: 'white',
+  cursor: 'pointer',
+}));

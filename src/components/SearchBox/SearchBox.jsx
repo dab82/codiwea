@@ -5,7 +5,8 @@ import { Formik } from 'formik';
 import * as yup from 'yup';
 import { Box } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import { Search, SearchIconWrapper, StyledInputBase } from './style';
+import AddIcon from '@mui/icons-material/Add';
+import { Search, AddButton, SearchIconWrapper, StyledInputBase } from './style';
 import '../../index.css';
 
 const initialValues = {
@@ -42,7 +43,12 @@ const SearchBox = props => {
           initialValues={initialValues}
           validationSchema={validationSchema}
         >
-          <Box component="form" autoComplete="off" onSubmit={addOneCity}>
+          <Box
+            component="form"
+            autoComplete="off"
+            onSubmit={addOneCity}
+            sx={{ display: 'flex', alignItems: 'center' }}
+          >
             <StyledInputBase
               placeholder="Search city..."
               onChange={e => setValue(e.target.value)}
@@ -52,6 +58,9 @@ const SearchBox = props => {
               fullWidth
               required
             />
+            <AddButton>
+              <AddIcon />
+            </AddButton>
           </Box>
         </Formik>
       </Search>
