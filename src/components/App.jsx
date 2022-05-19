@@ -6,17 +6,15 @@ import DetailedInfo from './DetailedInfo/DetailedInfo';
 import Footer from './Footer/Footer';
 import '../index.css';
 
-const App = () => {
-  return (
-    <div className="home">
-      <Header />
-      <Routes>
-        <Route path="/" element={<CityList />} />
-        <Route path=":cityId" element={<DetailedInfo />} />
-      </Routes>
-      <Footer />
-    </div>
-  );
-};
+const App = () => (
+  <div className="home">
+    <Header />
+    <Routes>
+      <Route path="/" element={<CityList />} />
+      <Route path=":cityId" element={<DetailedInfo />} />
+    </Routes>
+    <Footer />
+  </div>
+);
 
 export default App;
