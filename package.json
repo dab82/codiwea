@@ -35,7 +35,8 @@
     "test": "react-scripts test",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:js":	"eslint src/**/*.{js,jsx,ts,tsx}"
   },
   "eslintConfig": {
     "extends": [
